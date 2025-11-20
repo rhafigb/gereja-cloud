@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Montserrat } from "next/font/google"; // 1. Import Montserrat
 import "./globals.css";
-import { Toaster } from "react-hot-toast"; // Import Library Toast
+import { Toaster } from "react-hot-toast";
 
+// 2. Konfigurasi Font Montserrat
 const montserrat = Montserrat({ 
   subsets: ["latin"],
-  variable: "--font-montserrat",
+  weight: ["300", "400", "500", "600", "700", "800"], // Weight lengkap
+  variable: "--font-montserrat", // Variable untuk CSS custom jika perlu
   display: "swap",
 });
 
@@ -21,29 +23,27 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" className="scroll-smooth">
-      <body className={`${montserrat.variable} font-sans antialiased bg-gray-50`}>
+      {/* 3. PASANG LANGSUNG DI SINI: montserrat.className */}
+      <body className={`${montserrat.className} antialiased bg-gray-50 text-gray-800`}>
         
-        {/* KONFIGURASI GLOBAL NOTIFIKASI (UX PRO) */}
         <Toaster 
           position="top-center"
           reverseOrder={false}
           gutter={8}
           toastOptions={{
-            // Gaya Dasar (Clean White)
             duration: 5000,
             className: '',
             style: {
               background: '#fff',
-              color: '#1f2937', // Text Gray-800
-              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', // Shadow LG
+              color: '#1f2937',
+              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
               padding: '16px',
               borderRadius: '12px',
               fontSize: '14px',
-              fontFamily: 'var(--font-montserrat)',
+              // Pastikan Toast juga pakai variable Montserrat
+              fontFamily: 'var(--font-montserrat)', 
               border: '1px solid #e5e7eb',
             },
-            
-            // Gaya Sukses (Hijau)
             success: {
               iconTheme: {
                 primary: '#10B981',
@@ -53,8 +53,6 @@ export default function RootLayout({
                 borderLeft: '4px solid #10B981',
               },
             },
-            
-            // Gaya Error (Merah)
             error: {
               iconTheme: {
                 primary: '#EF4444',
@@ -64,8 +62,6 @@ export default function RootLayout({
                 borderLeft: '4px solid #EF4444',
               },
             },
-            
-            // Gaya Loading (Biru Primary)
             loading: {
               iconTheme: {
                 primary: '#1e3a8a',
